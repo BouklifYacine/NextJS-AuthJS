@@ -1,11 +1,11 @@
-import SignIn from "@/components/sign-in";
+import { BoutonConnexion } from "@/components/sign-out";
 
 
 
 export default function Home() {
   return (
     <>
-    <SignIn/>
+    <BoutonConnexion/>
     </>
   );
 }
