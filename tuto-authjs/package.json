@@ -1,5 +1,5 @@
 {
-  "name": "authjs",
+  "name": "tuto-authjs",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,21 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@auth/core": "^0.37.4",
-    "@auth/prisma-adapter": "^2.7.4",
     "@prisma/client": "^6.1.0",
-    "@types/bcryptjs": "^2.4.6",
-    "bcrypt": "^5.1.1",
-    "bcryptjs": "^2.4.3",
     "next": "15.1.2",
     "next-auth": "^5.0.0-beta.25",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-icons": "^5.4.0"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
-    "@types/bcrypt": "^5.0.2",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
