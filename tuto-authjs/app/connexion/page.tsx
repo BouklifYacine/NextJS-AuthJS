@@ -14,6 +14,7 @@ const PageConnexion = () => {
         <div>
             <h1>Je suis connecté</h1>
             <p>Email: {session?.user?.email}</p>
+            <p> Nom : {session?.user?.name} </p>
         </div>
     )
 }

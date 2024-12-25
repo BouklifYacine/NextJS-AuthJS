@@ -10,6 +10,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     session: {
         strategy: "jwt"
     },
+    pages: {
+        signIn: "/auth/login",
+      },
     providers: [
         GitHub({
             clientId: process.env.GITHUB_ID,
@@ -46,9 +49,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 return {
                     id: user.id,
                     email: user.email,
-                    name: user.name || email // Fallback au cas où name n'existe pas
+                    name: user.name || email 
                 }
             }
         })
+        
     ]
 })
