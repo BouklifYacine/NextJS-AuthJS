@@ -1,19 +1,19 @@
-import { auth } from '@/auth'
+"use client"
+import { useSession } from 'next-auth/react'
 import { redirect } from 'next/navigation'
 
-const PageConnexion = async () => {
-    const session = await auth()
-    console.log("Session dans PageConnexion:", session)
-    
-    if (!session) {
-        console.log("Pas de session, redirection...")
-        redirect('/')
-    }
-    
+const PageConnexion = () => {
+    const { data: session } = useSession({
+        required: true,
+        onUnauthenticated() {
+            redirect('/')
+        },
+    })
+
     return (
         <div>
             <h1>Je suis connecté</h1>
-            <p>Email: {session.user?.email}</p>
+            <p>Email: {session?.user?.email}</p>
         </div>
     )
 }

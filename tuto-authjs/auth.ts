@@ -8,13 +8,7 @@ import bcrypt from "bcryptjs"
 export const { handlers, signIn, signOut, auth } = NextAuth({
     adapter: PrismaAdapter(prisma),
     session: {
-        strategy: "database"
-    },
-    callbacks: {
-        async session({ session, user }) {
-            session.user = user
-            return session
-        }
+        strategy: "jwt"
     },
     providers: [
         GitHub({
@@ -22,7 +16,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             clientSecret: process.env.GITHUB_SECRET,
         }), 
         Credentials({
-            name: "Yacine",
+            name: "Formulaire",
             credentials: {
                 email: {label: "Email", type: "email"},
                 password: {label: "Password", type: "password"}
@@ -40,14 +34,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 })
 
                 if (!user) {
-                    throw new Error("Email introuvable")
+                    throw new Error("Email introuvable")!
                 }
 
-                if (!user.password) {
-                    throw new Error("Email introuvable")
-                }
-
-                const ismatched = await bcrypt.compare(password, user.password)
+                const ismatched = await bcrypt.compare(password, user.password!)
 
                 if (!ismatched) {
                     throw new Error("Les mots de passes correspondent pas")
@@ -55,8 +45,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
                 return {
                     id: user.id,
-                    name: user.name,
-                    email: user.email
+                    email: user.email,
+                    name: user.name || email // Fallback au cas où name n'existe pas
                 }
             }
         })
